@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import SNText from './SNText.js'
 
 class SNButton extends Component {
 
@@ -8,13 +8,37 @@ class SNButton extends Component {
         super(props);
     }
 
-    render(){
+    _renderChildren(style) {
+        const displayText = (text) => (<SNText>{text}</SNText>);
+        if (typeof this.props.children === 'string') {
+            return displayText(this.props.children)
+        }
+        const children = Array.isArray(this.props.children)
+            ? this.props.children
+            : [this.props.children];
+        return React.Children.map(children, (child) => {
+            if (typeof child === 'string') {
+                return displayText(child);
+            } else {
+                let {style: childStyle, ...childProps} = child.props;
+                return React.cloneElement(child, {
+                    style: [this.props.contentStyle, childStyle],
+                    ...childProps
+                });
+            }
+        })
+    }
+
+    render() {
+        const {
+            style,
+            type
+        } = this.props;
         return (
             <TouchableOpacity
                 style={styles.button}
-                onPress={this.onPress}
             >
-                <Text> Touch Here </Text>
+                {this.props.children && _renderChildren()}
             </TouchableOpacity>
             )
     }
