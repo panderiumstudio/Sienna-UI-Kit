@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import SNText from './SNText.js'
+import { getStylesFromType } from "../util/stylesService";
 
 class SNButton extends Component {
 
     constructor(props) {
         super(props);
     }
+
+    componentName = 'SNButton';
 
     _renderChildren(style) {
         const displayText = (text) => (<SNText>{text}</SNText>);
@@ -30,15 +33,16 @@ class SNButton extends Component {
     }
 
     render() {
-        const {
-            style,
-            type
-        } = this.props;
+        const { style, type, ...touchableProps } = this.props;
+
+        const { container, content } = getStylesFromType(type, this.componentName);
+
         return (
             <TouchableOpacity
                 style={styles.button}
+                {...touchableProps}
             >
-                {this.props.children && _renderChildren()}
+                {this.props.children && this._renderChildren()}
             </TouchableOpacity>
             )
     }
