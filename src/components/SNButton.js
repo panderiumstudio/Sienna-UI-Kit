@@ -5,14 +5,10 @@ import { getStylesFromType } from "../util/stylesService";
 
 class SNButton extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     componentName = 'SNButton';
 
     _renderChildren(style) {
-        const displayText = (text) => (<SNText>{text}</SNText>);
+        const displayText = (text) => (<SNText style={[style, this.props.contentStyle]}>{text}</SNText>);
         if (typeof this.props.children === 'string') {
             return displayText(this.props.children)
         }
@@ -39,10 +35,10 @@ class SNButton extends Component {
 
         return (
             <TouchableOpacity
-                style={styles.button}
+                style={[container, style, styles.button]}
                 {...touchableProps}
             >
-                {this.props.children && this._renderChildren()}
+                {this.props.children && this._renderChildren(content)}
             </TouchableOpacity>
             )
     }
