@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Font} from 'expo';
 import SNText from './src/components/SNText.js'
+import SNButton from './src/components/SNButton.js'
 
 export default class App extends React.Component {
 
 
     componentDidMount() {
-        Font.loadAsync({
+        Expo.Font.loadAsync({
             'open-sans-bold': require('./src/assets/fonts/OpenSans-Bold.ttf'),
             'open-sans': require('./src/assets/fonts/OpenSans-Regular.ttf'),
             'open-sans-light': require('./src/assets/fonts/OpenSans-Light.ttf'),
@@ -18,7 +18,7 @@ export default class App extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <SNText>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, vero!</SNText>
+                <SNButton type="yellow">Button</SNButton>
             </View>
         );
     }

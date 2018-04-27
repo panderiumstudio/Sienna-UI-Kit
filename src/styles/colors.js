@@ -6,4 +6,5 @@ export const COLORS = {
     accent: '#fe2042',
     primaryText: '#0d0e15',
     secondaryText: '#768196',
+    yellow: '#96870F',
 };

@@ -35,7 +35,7 @@ class SNButton extends Component {
 
         return (
             <TouchableOpacity
-                style={[container, style, styles.button]}
+                style={[container, style]}
                 {...touchableProps}
             >
                 {this.props.children && this._renderChildren(content)}
@@ -44,14 +44,6 @@ class SNButton extends Component {
     }
 
 }
-
-const styles = StyleSheet.create({
-    button: {
-        alignItems: 'center',
-        backgroundColor: '#DDDDDD',
-        padding: 10
-    }
-});
 
 
 export default SNButton;
